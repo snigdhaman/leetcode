@@ -36,13 +36,6 @@ public class LC986IntervalListIntersections {
                 }
             }
         }
-        int[][] res = new int[list.size()][2];
-        int idx = 0;
-        for (int[] el : list) {
-            // System.out.println(el[0] + "::" + el[1]);
-            res[idx] = el;
-            idx++;
-        }
-        return res;
+        return list.toArray(new int[list.size()][2]);
     }
 }
