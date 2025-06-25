@@ -2,24 +2,27 @@ package arraysandhashing;
 
 public class LC1004MaxConsecutiveOnesIII {
 
-    public int longestOnes (int[] nums, int k) {
-        int start = 0, end = 0, count = 0, maxLength = Integer.MIN_VALUE;
-
-        while (end < nums.length) {
-            if (nums[end] == 0) {
+    public int longestOnes(int[] nums, int k) {
+        int left = 0, right = 0;
+        int count = 0;
+        int maxWindow = 0;
+        while (right < nums.length) {
+            if (nums[right] == 1) {
                 count++;
             }
-            while (count > k) {
-                if (nums[start] == 0) {
+            int currWindow = right - left;
+            if (currWindow >= count + k) {
+                if (nums[left] == 1) {
                     count--;
                 }
-                start++;
+                left++;
             }
-            maxLength = Math.max(maxLength, end - start + 1);
-            end++;
+            else {
+                maxWindow = Math.max(maxWindow, currWindow + 1);
+            }
+            right++;
         }
-
-        return maxLength;
+        return maxWindow;
     }
 
     public static void main (String[] args) {
